@@ -9,7 +9,7 @@ type Order =  {
   status: string;
   }
 
-let menu: MenuItem[] = [
+let menu: Array<MenuItem> = [
   { name: 'Margarita', price: 1 },
   { name: 'Peperoni', price: 2 },
   { name: 'Hawaian', price: 3 },
@@ -24,7 +24,7 @@ const orderStatus = {
 
 let cashRegister: number = 100;
 let nextOrderId: number = 1;
-let orderQueue: Order[] = [];
+let orderQueue: Array<Order> = [];
 
 function addNewMenuItem(item: MenuItem) {
   menu.push(item);
@@ -35,7 +35,7 @@ function placeOrder(itemName : string) {
   const selectedItem = menu.find((itemObj) => itemObj.name === itemName);
   if(!selectedItem){
     console.error(`${itemName} doesn't exists in the menu`);
-    return;
+    throw new Error();
   }
   cashRegister += selectedItem.price;
   const newOrder = { id: nextOrderId++, item: selectedItem, status: orderStatus.ORDERED };
@@ -48,7 +48,7 @@ function completeOrder(orderId: number) {
   let order = orderQueue.find((order) => order.id === orderId);
   if(!order){
     console.error(`№${orderId} order doesn't exist in the queue`);
-    return
+    throw new Error();
   }
   order.status = orderStatus.COMPLETED;
   return order;
