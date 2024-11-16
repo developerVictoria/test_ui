@@ -38,6 +38,7 @@ function addItemToArray<T>(array: T[], item: T): T[]{
   return array
 }
 
+
 //function return types  can be any, void, undentified, standart or custom datatypes
 function addNewMenuItem(item: Omit<MenuItem, "id">): MenuItem {
   const newItem: MenuItem = { id:nextMenuItemId++, ...item}
