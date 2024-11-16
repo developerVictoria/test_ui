@@ -31,9 +31,16 @@ enum orderStatus {
   INPROGRESS = "in progress"
 };
 
+//Generics example
+//fuction getSmth<T>(array:T[])
+function addItemToArray<T>(array: T[], item: T): T{
+  array.push(item)
+  return item
+}
+
 //function return types  can be any, void, undentified, standart or custom datatypes
 function addNewMenuItem(item: Omit<MenuItem, "id">): MenuItem {
-  let newItem: MenuItem = { id:nextMenuItemId++, ...item}
+  const newItem: MenuItem = { id:nextMenuItemId++, ...item}
   menu.push(newItem);
   return newItem;
 }
