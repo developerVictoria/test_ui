@@ -2,11 +2,13 @@ type MenuItem = {
   name: string;
   price: number;
 }
+//union
+type Status = "completed" | "ordered" | "in progress" ;
 //to make property option add ? before semicolon 
 type Order =  {
   id: number;
   item: MenuItem;
-  status: string;
+  status: Status
   }
 
 let menu: Array<MenuItem> = [
@@ -16,10 +18,11 @@ let menu: Array<MenuItem> = [
   { name: '4 Cheeses', price: 4 }
 ];
 
-const orderStatus = {
-  COMPLETED: 'completed',
-  ORDERED: 'ordered',
-  INPROGRESS: 'in progress'
+//enum
+enum orderStatus {
+  COMPLETED = "completed",
+  ORDERED = "ordered",
+  INPROGRESS = "in progress"
 };
 
 let cashRegister: number = 100;
@@ -38,7 +41,7 @@ function placeOrder(itemName : string) {
     throw new Error();
   }
   cashRegister += selectedItem.price;
-  const newOrder = { id: nextOrderId++, item: selectedItem, status: orderStatus.ORDERED };
+  const newOrder: Order = { id: nextOrderId++, item: selectedItem, status: orderStatus.ORDERED };
 
   orderQueue.push(newOrder);
   return newOrder;
