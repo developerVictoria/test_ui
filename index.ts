@@ -33,9 +33,9 @@ enum orderStatus {
 
 //Generics example
 //fuction getSmth<T>(array:T[])
-function addItemToArray<T>(array: T[], item: T): T{
+function addItemToArray<T>(array: T[], item: T): T[]{
   array.push(item)
-  return item
+  return array
 }
 
 //function return types  can be any, void, undentified, standart or custom datatypes
